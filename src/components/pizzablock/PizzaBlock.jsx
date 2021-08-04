@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import classNames from "classnames";
+import React, { useState } from "react";
 
 const PizzaBlock = ({ name, price, imageUrl, types, sizes }) => {
   const typeDough = ["San-Francisco", "Pan"];
@@ -22,7 +22,7 @@ const PizzaBlock = ({ name, price, imageUrl, types, sizes }) => {
               })}
               key={i}
             >
-              {i} 
+              {i}
             </li>
           ))}
         </ul>
@@ -33,7 +33,7 @@ const PizzaBlock = ({ name, price, imageUrl, types, sizes }) => {
               onClick={() => setPizzaSize(index)}
               className={classNames({
                 active: pizzaSize === index,
-                disabled: !sizes.includes(i)
+                disabled: !sizes.includes(i),
               })}
             >
               {i} cm.
