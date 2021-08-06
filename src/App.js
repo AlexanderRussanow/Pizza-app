@@ -11,12 +11,8 @@ const App = () => {
       <div className="wrapper">
         <Header />
         <div className="content">
-          <Route exact path='/' >
-            <Home />
-          </Route>
-          <Route exact path='/cart'>
-            <Cart />
-          </Route>
+          <Route path='/' exact component={Home} />
+          <Route path='/cart' exact component={Cart} />
         </div>
       </div>
     </div>

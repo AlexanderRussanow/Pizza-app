@@ -1,11 +1,33 @@
 import classNames from "classnames";
 import React, { useState } from "react";
+import Button from "../Button";
 
-const PizzaBlock = ({ name, price, imageUrl, types, sizes }) => {
+const PizzaBlock = ({
+  id,
+  name,
+  price,
+  imageUrl,
+  types,
+  sizes,
+  onAddCart,
+  inCartCount,
+}) => {
   const typeDough = ["San-Francisco", "Pan"];
   const possibleSize = [26, 30, 40];
-  const [pizzaSize, setPizzaSize] = useState(possibleSize[0]);
+  const [pizzaSize, setPizzaSize] = useState(0);
   const [pizzaType, setPizzaType] = useState(types[0]);
+
+  const onAddPizza = () => {
+    const obj = {
+      id,
+      name,
+      price,
+      imageUrl,
+      size: possibleSize[pizzaSize],
+      type: typeDough[pizzaType],
+    };
+    onAddCart(obj);
+  };
 
   return (
     <div className="pizza-block">
@@ -43,7 +65,10 @@ const PizzaBlock = ({ name, price, imageUrl, types, sizes }) => {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">{price} Kč</div>
-        <div className="button button--outline button--add">
+        <Button
+          onClick={onAddPizza}
+          className="button button--outline button--add"
+        >
           <svg
             width="12"
             height="12"
@@ -57,8 +82,8 @@ const PizzaBlock = ({ name, price, imageUrl, types, sizes }) => {
             />
           </svg>
           <span>Add</span>
-          <i>2</i>
-        </div>
+          {inCartCount && <i>{inCartCount}</i>}
+        </Button>
       </div>
     </div>
   );

@@ -2,8 +2,24 @@ import React from "react";
 import logo from "../assets/img/pizza-logo.svg";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setTotalPrice, setTotalCount } from "../redux/actions/cartAC";
 
 const Header = () => {
+  const { totalPrice, totalCount } = useSelector(
+    ({ cartReducer }) => cartReducer
+  );
+
+  // const dispatch = useDispatch();
+
+  // const setTotalCartPrice = React.useCallback((value) => {
+  //   dispatch(setTotalPrice(value));
+  // }, []);
+
+  // const setTotalCartCount = React.useCallback((value) => {
+  //   dispatch(setTotalCount(value))
+  // })
+
   return (
     <div className="header">
       <div className="container">
@@ -21,7 +37,7 @@ const Header = () => {
           <Link to="/cart">
             <Button>
               <a href="/cart.html" className="button button--cart">
-                <span>520 Kč</span>
+                <span>{totalPrice} Kč</span>
                 <div className="button__delimiter"></div>
                 <svg
                   width="18"
@@ -52,7 +68,7 @@ const Header = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>3</span>
+                <span>{totalCount}</span>
               </a>
             </Button>
           </Link>
