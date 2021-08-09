@@ -63,7 +63,7 @@ const Home = () => {
                 key={`${item}_${index}`}
                 {...item}
                 onAddCart={onAddCart}
-                inCartCount={cartItems && cartItems[item.id].length}
+                inCartCount={cartItems && cartItems[item.id].items.length}
               />
             ))
           : Array(12)
